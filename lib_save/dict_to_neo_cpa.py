@@ -1,44 +1,53 @@
-from py2neo import Relationship, Node
 import datetime
 
 
-def dict_to_neo_cpa(graph, dict_body, child):
-    cpa_result = create_cpa(graph, dict_body)
+def dict_to_neo_cpa(driver, dict_body, child):
+    cpa_result = create_cpa(driver, dict_body)
     if cpa_result == 'success' or 'exists':
-        return create_relation_on_cpa(graph, dict_body, child)
+        return create_relation_on_cpa(driver, dict_body, child)
     else:
         return cpa_result
 
-def create_cpa(graph, dict_body):
-    try: 
-        cpa_node = Node('CPA', **{k.replace(' ', '_'): str(v) if isinstance(v, dict) else v for k, v in dict_body['Center Node'].items()})
-        graph.create(cpa_node)
+def create_cpa(driver, dict_body):
+    with driver.session() as session:
+        try: 
+            cpa_node = {'label': 'CPA', **{k.replace(' ', '_'): str(v) if isinstance(v, dict) else v for k, v in dict_body['Center Node'].items()}}
+            session.run(
+                "CREATE (cpa:CPA $properties)",
+                properties=cpa_node
+            )
 
-        with open('log/log_save.txt', 'a+') as file:
-            file.write(f"{datetime.datetime.now()} SUCCESS ON SAVING CPA {dict_body['Center Node']['CPA ID']} \n")
-        return 'success'
-    
-    except Exception as e:
-        with open('log/log_save.txt', 'a+') as file:
-            file.write(f"{datetime.datetime.now()} ERROR ON SAVING CPA {dict_body['Center Node']['CPA ID']}: {e} \n")
-        if 'already exists' in str(e):
-            return 'exists'
-        else:
-            return 'error'
+            with open('log/log_save.txt', 'a+') as file:
+                file.write(f"{datetime.datetime.now()} SUCCESS ON SAVING CPA {dict_body['Center Node']['CPA ID']} \n")
+            return 'success'
+        
+        except Exception as e:
+            with open('log/log_save.txt', 'a+') as file:
+                file.write(f"{datetime.datetime.now()} ERROR ON SAVING CPA {dict_body['Center Node']['CPA ID']}: {e} \n")
+            if 'already exists' in str(e):
+                return 'exists'
+            else:
+                return 'error'
 
 
-def create_relation_on_cpa(graph, dict_body, child):
-    try:
-        cpa_node = graph.nodes.match('CPA', CPA_ID = dict_body['Center Node']["CPA ID"]).first()
-        child_node = Node(child, **{k.replace(' ', '_'): str(v) if isinstance(v, dict) else v for k, v in dict_body[child].items()})
-        graph.create(Relationship(cpa_node, f"{child}_of_CPA", child_node))
-        with open('log/log_save.txt', 'a+') as file:
-            file.write(f"{datetime.datetime.now()} SUCCESS ON SAVING {child}_of_CPA {dict_body['Center Node']['CPA ID']} \n")
-        return 'success'
-    except Exception as e:
-        with open('log/log_save.txt', 'a+') as file:
-            file.write(f"{datetime.datetime.now()} ERROR ON SAVING {child}_of_CPA {dict_body['Center Node']['CPA ID']}: {e} \n")
-        if 'already exists' in str(e):
-            return 'exists'
-        else:
-            return 'error'
+def create_relation_on_cpa(driver, dict_body, child):
+    with driver.session() as session:
+        try:
+            cpa_id = dict_body['Center Node']['CPA ID']
+            child_properties = {k.replace(' ', '_'): str(v) if isinstance(v, dict) else v for k, v in dict_body[child].items()}
+            session.run(
+                f"MATCH (cpa:CPA {{CPA_ID: $cpa_id}}) "
+                f"CREATE (child:{child} $properties) "
+                f"CREATE (cpa)-[:{child}_of_CPA]->(child)",
+                {"cpa_id": cpa_id, "properties": child_properties}
+            )
+            with open('log/log_save.txt', 'a+') as file:
+                file.write(f"{datetime.datetime.now()} SUCCESS ON SAVING {child}_of_CPA {dict_body['Center Node']['CPA ID']} \n")
+            return 'success'
+        except Exception as e:
+            with open('log/log_save.txt', 'a+') as file:
+                file.write(f"{datetime.datetime.now()} ERROR ON SAVING {child}_of_CPA {dict_body['Center Node']['CPA ID']}: {e} \n")
+            if 'already exists' in str(e):
+                return 'exists'
+            else:
+                return 'error'

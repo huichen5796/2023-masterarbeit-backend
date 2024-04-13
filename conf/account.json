@@ -1,6 +1,8 @@
 {
-    "profile_cryo": "neo4j://18.195.20.148:7687",
+    "profile_cryo": "bolt://18.195.20.148:7687",
+    "username_cryo": "neo4j",
     "password_cryo": "test_cryo",
-    "profile_cpa": "neo4j://18.185.41.245:7687",
+    "profile_cpa": "bolt://18.185.41.245:7687",
+    "username_cpa": "neo4j",
     "password_cpa": "test_cpa"
 }
