@@ -22,13 +22,11 @@ def create_cpa(driver, dict_body):
             return 'success'
         
         except Exception as e:
+            with open('log/log_save.txt', 'a+') as file:
+                file.write(f"{datetime.datetime.now()} ERROR ON SAVING CPA {dict_body['Center Node']['CPA ID']}: {e} \n")
             if 'already exists' in str(e):
-                with open('log/log_save.txt', 'a+') as file:
-                    file.write(f"{datetime.datetime.now()} EXISTS ON SAVING CPA {dict_body['Center Node']['CPA ID']}: {e} \n")
                 return 'exists'
             else:
-                with open('log/log_save.txt', 'a+') as file:
-                    file.write(f"{datetime.datetime.now()} ERROR ON SAVING CPA {dict_body['Center Node']['CPA ID']}: {e} \n")
                 return 'error'
 
 
