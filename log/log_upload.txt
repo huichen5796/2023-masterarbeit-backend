@@ -1,0 +1,20 @@
+2024-04-14 01:37:09.188318 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/F.txt 
+2024-04-14 01:37:09.193421 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11 - Copy/Process/Prozess1.txt 
+2024-04-14 01:37:09.196431 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11 - Copy/Post/EQ20230906A-75D-1.txt 
+2024-04-14 01:37:09.198428 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11 - Copy/Post/EQ20230906A-75D-2.txt 
+2024-04-14 01:37:09.200943 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11 - Copy/Post/EQ20230906A-75D-3.txt 
+2024-04-14 01:37:09.202950 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11 - Copy/Post/EQ20230906A-75D-4.txt 
+2024-04-14 01:37:09.204952 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11 - Copy/Post/EQ20230906A-75D-5.txt 
+2024-04-14 01:37:09.209466 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11 - Copy/CPA/12/FTIR/03 DMSO 10 percent in PBS.asc 
+2024-04-14 01:37:09.212484 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11/Process/Prozess1.txt 
+2024-04-14 01:37:09.215482 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11/Post/EQ20230906A-50D-1.txt 
+2024-04-14 01:37:09.217484 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11/Post/EQ20230906A-50D-2.txt 
+2024-04-14 01:37:09.219992 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11/Post/EQ20230906A-K1.txt 
+2024-04-14 01:37:09.222007 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11/Post/EQ20230906A-K2.txt 
+2024-04-14 01:37:09.224007 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11/Post/EQ20230906A-K3.txt 
+2024-04-14 01:37:09.226009 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11/Post/EQ20230906A-K4.txt 
+2024-04-14 01:37:09.228008 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11/Post/EQ20230906A-K5.txt 
+2024-04-14 01:37:09.232536 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/test11/CPA/222/FTIR/03.asc 
+2024-04-14 01:37:09.235535 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/Pre/EQ20230906A-3a-Pre1.txt 
+2024-04-14 01:37:09.237535 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/Pre/EQ20230906A-3a-Pre2.txt 
+2024-04-14 01:37:09.239534 SUCCESS ON UPLOADING: data_store/Experiment/Experiment test/Versuch 20230906/Pre/EQ20230906A-3a-Pre3.txt 
