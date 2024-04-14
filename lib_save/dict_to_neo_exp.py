@@ -34,11 +34,13 @@ def dict_to_neo_probe(driver, dict_body, ExpVer_id):
             return 'success'
 
         except Exception as e:
-            with open(f'log/log_exps/log_{ExpVer_id.split("*-*")[0]}.txt', 'a+') as file:
-                file.write(f"{datetime.datetime.now()} ERROR ON SAVING PROBE {ID} OF {ExpVer_id}: {e} \n")
             if 'already exists' in str(e):
+                with open(f'log/log_exps/log_{ExpVer_id.split("*-*")[0]}.txt', 'a+') as file:
+                    file.write(f"{datetime.datetime.now()} EXISTS ON SAVING PROBE {ID} OF {ExpVer_id}: {e} \n")
                 return 'exists'
             else:
+                with open(f'log/log_exps/log_{ExpVer_id.split("*-*")[0]}.txt', 'a+') as file:
+                    file.write(f"{datetime.datetime.now()} ERROR ON SAVING PROBE {ID} OF {ExpVer_id}: {e} \n")
                 return 'error'
 
 def dict_to_neo_expriment(driver, dict_body, experiment_id):
@@ -97,6 +99,8 @@ def create_experiment_node(session, dict_body, experiment_id):
         return 'success'
     except Exception as e:
         if 'already exists' in str(e):
+            with open(f'log/log_exps/log_{experiment_id}.txt', 'a+') as file:
+                file.write(f"{datetime.datetime.now()} EXISTS ON CREATE EXPERIMENT {experiment_id}: {e} \n")
             return 'exists'
         else:
             with open(f'log/log_exps/log_{experiment_id}.txt', 'a+') as file:
