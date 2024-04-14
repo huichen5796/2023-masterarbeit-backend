@@ -47,9 +47,11 @@ def create_relation_on_cpa(driver, dict_body, child):
                 file.write(f"{datetime.datetime.now()} SUCCESS ON SAVING {child}_of_CPA {dict_body['Center Node']['CPA ID']} \n")
             return 'success'
         except Exception as e:
-            with open('log/log_save.txt', 'a+') as file:
-                file.write(f"{datetime.datetime.now()} ERROR ON SAVING {child}_of_CPA {dict_body['Center Node']['CPA ID']}: {e} \n")
             if 'already exists' in str(e):
+                with open('log/log_save.txt', 'a+') as file:
+                    file.write(f"{datetime.datetime.now()} EXISTS ON SAVING {child}_of_CPA {dict_body['Center Node']['CPA ID']}: {e} \n")
                 return 'exists'
             else:
+                with open('log/log_save.txt', 'a+') as file:
+                    file.write(f"{datetime.datetime.now()} ERROR ON SAVING {child}_of_CPA {dict_body['Center Node']['CPA ID']}: {e} \n")
                 return 'error'
